@@ -22,6 +22,7 @@ import { saveIncidentReport } from "./components/saveIncident";
 import NotificationIcon from "./components/NotificationIcon";
 import LiveNotifications from "./components/LiveNotifications";
 import ReportIncidentSubmit from "./components/ReportIncidentSubmit";
+import { predictRoutes } from './api/predict';
 
 export default function App() {
   const [route, setRoute] = useState(null);
