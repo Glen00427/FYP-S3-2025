@@ -29,6 +29,7 @@ export default function App() {
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [predictions, setPredictions] = useState(null);
 
   // auth & gate
   const [user, setUser] = useState(null);
@@ -356,7 +357,25 @@ export default function App() {
           isGuest={!user}
           onSubmit={(from, to, options) => {
             console.log("Preview requested:", { from, to, options });
-          }}
+          // ADD THIS PREDICTION CALL
+      try {
+        const result = await predictRoutes({ 
+          from, 
+          to, 
+          departTime: options?.departAt 
+        });
+        
+        setPredictions(result);
+        console.log('ML Predictions received:', result);
+        
+        // Show results to user
+        alert(`Best route: ${result.best.name}\nCongestion: ${Math.round(result.best.congestionProb * 100)}%`);
+        
+      } catch (error) {
+        console.error('Prediction failed:', error);
+        alert('Could not get predictions. Check console.');
+      }
+    }}
         />
       </section>
 
