@@ -45,8 +45,24 @@ export async function predictRoutes({ from, to, departTime }) {
     console.error('Prediction error:', error);
     // Return fallback/demo data
     return {
-      best: { id: 'fallback', name: 'Route 1', label: 'Best (fallback)', duration: '25 min', distance: '12 km', confidence: 0.7 },
-      worst: { id: 'fallback2', name: 'Route 2', label: 'Alternative', duration: '32 min', distance: '15 km', confidence: 0.6 },
+      best: { 
+        id: 'fallback', 
+        name: 'Route 1', 
+        label: 'Best (fallback)', 
+        duration: '25 min', 
+        distance: '12 km', 
+        confidence: 0.7,
+        congestionProb: 0.35  // ADDED THIS
+      },
+      worst: { 
+        id: 'fallback2', 
+        name: 'Route 2', 
+        label: 'Alternative', 
+        duration: '32 min', 
+        distance: '15 km', 
+        confidence: 0.6,
+        congestionProb: 0.68  // ADDED THIS
+      },
       note: 'Using fallback routes (backend offline)',
     };
   }
