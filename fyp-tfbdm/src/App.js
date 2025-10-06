@@ -355,7 +355,7 @@ export default function App() {
 
         <RoutePreviewSheet
           isGuest={!user}
-          onSubmit={(from, to, options) => {
+          onSubmit={async (from, to, options) => {
             console.log("Preview requested:", { from, to, options });
           // ADD THIS PREDICTION CALL
       try {
