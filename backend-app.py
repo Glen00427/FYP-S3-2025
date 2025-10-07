@@ -12,7 +12,11 @@ CORS(app)
 
 # Load your trained models (download from Colab first!)
 model = joblib.load('rf.joblib')  # Your Random Forest
-features = joblib.load('feature_columns.joblib')  # ['SpeedKMH_Est', 'MinimumSpeed', ...]
+features = [
+    'SpeedKMH_Est', 'MinimumSpeed', 'MaximumSpeed', 
+    'dow', 'hour', 'incident_count', 'vms_count', 
+    'cctv_count', 'ett_mean'
+]
 
 # LTA API credentials (from your notebook)
 LTA_ACCOUNT_KEY = 'RYS6WoFQRNmktb5h2N0u5w=='
@@ -138,3 +142,4 @@ def health():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
