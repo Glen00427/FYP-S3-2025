@@ -1,4 +1,4 @@
-# backend-app.py (COMPLETE VERSION)
+# backend-app.py (COMPLETE VERSION WITH ROOT ROUTE)
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
@@ -88,6 +88,30 @@ def generate_alternative_routes(from_location, to_location):
     ]
 
 
+@app.route('/')
+def home():
+    """Root endpoint - API information"""
+    return jsonify({
+        'message': 'Traffic Prediction API is running',
+        'status': 'active',
+        'version': '1.0',
+        'endpoints': {
+            '/': 'GET - API information',
+            '/health': 'GET - Check API health status',
+            '/predict': 'POST - Predict traffic and get best route'
+        },
+        'example_request': {
+            'endpoint': '/predict',
+            'method': 'POST',
+            'body': {
+                'from': '1.3521,103.8198',
+                'to': '1.2897,103.8501',
+                'departTime': '2025-10-08T08:00:00'
+            }
+        }
+    })
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
@@ -142,4 +166,3 @@ def health():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
-
