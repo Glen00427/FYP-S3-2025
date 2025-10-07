@@ -365,6 +365,9 @@ export default function App() {
           departTime: options?.departAt 
         });
         
+        console.log('🔍 FULL RESULT:', JSON.stringify(result, null, 2)); // ADD THIS
+        console.log('🔍 Best congestionProb:', result.best.congestionProb); // AND THIS
+        
         setPredictions(result);
         console.log('ML Predictions received:', result);
         
